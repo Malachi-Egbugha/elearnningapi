@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const connectDb = async ()  =>
 {
-   const conn= await mongoose.connect('mongodb+srv://malachi:m0645032@sms.ambyo.mongodb.net/users?retryWrites=true&w=majority',{
+   const conn= await mongoose.connect(process.env.DATABASE || 'mongodb://localhost/schoolmanagement', {
        useNewUrlParser: true,
        useCreateIndex:true,
        useFindAndModify: false,

@@ -6,11 +6,31 @@ const Schema = mongoose.Schema;
 const userSchema = new Schema({
     firstname:String,
     lastname: String,
-    mobilenumber: Number,
-    examtype:String,
+    middlename: String,
+    regnumber: String,
+    sex: String,
+    dob: String,
+    pob: String,
+    classs: String,
+    role: String,
+    address: String, 
+    formerschool: String,
     state: String,
     email: String,
-    password: String
+    password: String,
+    fatherfirstname: String,
+    motherfirstname: String,
+    fatherlastname: String,
+    motherlastname: String,
+    fatherphone: Number,
+    motherphone: Number,
+    parentemail: String,
+    status: {
+        type:String,
+        default: "active"
+    },
+    
+    
 });
 
 //sign jwt and return

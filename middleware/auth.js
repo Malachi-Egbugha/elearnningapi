@@ -15,10 +15,10 @@ exports.protect = async (req, res, next) => {
         {return res.status(403).json({error: 'Unauthorise User'});}
        
     try
-    {
+    { 
          //Verify token
          const decoded = jwt.verify(token, 'jjbg759kjr09566');
-         console.log(decoded);
+         //console.log(decoded);
          req.user = await User.findById(decoded.id);
          next();
 
@@ -34,7 +34,7 @@ exports.authorize = (...roles) => {
     return (req, res, next) => {
         if(!roles.includes(req.user.role))
         {
-            return res.status(403).json({error: 'Unauthorise User'});
+            return res.status(403).json({error: `User role ${req.user.role} is Unauthorise to commit this action`});
 
         }
         next()

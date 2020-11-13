@@ -5,11 +5,10 @@ const {protect} = require('../middleware/auth');
 
 const UsersController = require('../controllers/users');
 
-router.route('/signup')
-.post(validateBody(schemas.authSchema), UsersController.signup);
 
-router.route('/signin')
-.post(validateBody(loginschemas.authSchema), UsersController.signin);
+
+router.route('/updateuser/:id')
+.put(UsersController.updateuser);
 
 router.route('/secret')
 .get(protect,  UsersController.secret);
