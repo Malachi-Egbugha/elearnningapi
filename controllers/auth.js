@@ -58,6 +58,11 @@ signin: async(req, res, next) =>
    sendTokenResponse (user, 200, res);
   
 },
+};
+exports.signout =(req, res) =>{
+    res.clearCookie('token');
+    res.json({message: 'Signout success'});
+
 }
 
 //Get token from model, create cookie and send response
