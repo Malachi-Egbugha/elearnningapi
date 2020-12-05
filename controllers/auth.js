@@ -58,7 +58,18 @@ signin: async(req, res, next) =>
    sendTokenResponse (user, 200, res);
   
 },
+signout : async (req, res, next)=>{
+    try{
+    res.clearCookie('token');
+    res.json({message: 'Signout success'});
+    }
+    catch(err){
+        next(err);
+
+    }
 }
+};
+
 
 //Get token from model, create cookie and send response
 const sendTokenResponse = (user, statusCode, res) =>

@@ -23,10 +23,10 @@ const examSchema = new Schema ({
         type:String,
         required:[true, 'Please Enter Subject'],
     },
-    subjectcode:
+    category:
     {
         type:String,
-        required:[true, 'Please Enter Subjectcode'],
+        required:[true, 'Please Enter Subject Code'],
     },
     regnumber:
     {
