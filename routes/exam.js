@@ -12,5 +12,12 @@ router.route('/createupdate')
 router.route('/read')
 .post(ExamController.read);
 
+router.route('/readexam')
+.post(ExamController.readone);
+
+router.route('/deleteexams/:examId')
+.delete(ExamController.deleteExams);
+
+
 
 module.exports = router;
