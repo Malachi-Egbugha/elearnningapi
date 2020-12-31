@@ -28,7 +28,9 @@ catch(err){
   
 },
 signin: async(req, res, next) =>
+
 {
+    try{
     const {email, password} = req.value.body;
     //validate user name and password
     if(!email || !password)
@@ -45,6 +47,7 @@ signin: async(req, res, next) =>
 
     }
     //check is password matches
+  
 
    const isMatch =await  user.isValidPassword(password);
   
@@ -56,6 +59,12 @@ signin: async(req, res, next) =>
    };
     //respond with token
    sendTokenResponse (user, 200, res);
+}catch(err)
+{
+    next(err);
+
+}
+   
   
 },
 signout : async (req, res, next)=>{

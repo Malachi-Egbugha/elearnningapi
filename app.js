@@ -21,6 +21,9 @@ app.use(cookieParser());
 app.use('/api',require('./routes/auth'));
 app.use('/api',require('./routes/users'));
 app.use('/exam',require('./routes/exam'));
+app.use('/firstca',require('./routes/firstca'));
+app.use('/secondca',require('./routes/secondca'));
+app.use('/grade',require('./routes/grade'));
 app.use(errorHandler);
 //Start the server
 const port = process.env.PORT || 8080;

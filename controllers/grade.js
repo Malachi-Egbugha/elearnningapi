@@ -1,15 +1,15 @@
 //const ErrorResponse = require('../config/util/errorResponse');
-const Exam = require('../models/exam');
-//add exam and update
+const Grade= require('../models/grade');
+//add firstca and update
 exports.create = async (req, res, next) => {
     //check if student with the registration,subject and session number exit in first term exam score tabele
     try{
 
 
-        const  {regnumber, subject, session, term} = req.body;
-        const filter = {regnumber, subject, session, term};
+        const  {minscore, maxscore, grade} = req.body;
+        const filter = {minscore, maxscore, grade};
         const update = req.body;
-        let doc = await Exam.findOneAndUpdate(filter, update,{
+        let doc = await Grade.findOneAndUpdate(filter, update,{
             new: true,
             upsert:true
         });
@@ -31,48 +31,48 @@ exports.create = async (req, res, next) => {
 
 };
 /**
- * Get all the exams
- * Paginate the exams
- * Get the total number of exams
+ * Get all the firstcas
+ * Paginate the firstcas
+ * Get the total number of firstcas
  */
 exports.read = async (req, res, next) =>{
     //search for scores by registration, session and term
-    //replicate exam in test
+    
 
     const page = req.query.page;
     const ItemsPerPge = 10;
-    const exams = await Exam.find()
+    const grade = await Grade.find()
         .skip((page - 1) * ItemsPerPge)
         .limit(ItemsPerPge);
-   const totalExams = await Exam.countDocuments();
-    res.json({ exams, totalExams});
+   const totalGrade = await Grade.countDocuments();
+    res.json({ grade, totalGrade});
     
 
 };
 /**
- * reaad exam for inividual
+ * reaad firstca for inividual
  **/
 exports.readone = async (req, res, next)=>{
-    //search for exams base on regnuumber, session and term
+    //search for firstca base on regnuumber, session and term
     const  {regnumber, session, term} = req.body;
     const filter = {regnumber, session, term};
-    exams = await Exam.find(filter);
-    console.log(exams);
-    res.json({exams});
+    firstcas = await Firstca.find(filter);
+    console.log(firstcas);
+    res.json({firstcas});
 }
 /**
- * delete the exam
+ * delete the firstca
  */
-exports.deleteExams =async (req, res, next) => {
+exports.deleteGrade =async (req, res, next) => {
     console.log(req.params);
     try{
         
-        const exams = await Exam.findOneAndDelete({ _id: req.params.examId });
+        const grade = await Grade.findOneAndDelete({ _id: req.params.gradeId });
        
-        if (exams) {
-            res.json({ exams });
+        if (grade) {
+            res.json({ grade });
         } else {
-            res.json({ message: `the exam with the id of ${req.params.examId} does not exits` });
+            res.json({ message: `the Grade with the id of ${req.params.gradeId} does not exits` });
         }
     }
     catch(err)
