@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
 //create schema
 const Schema = mongoose.Schema;
-const examSchema = new Schema ({
+const firstcaSchema = new Schema ({
     score: 
     {
         type:Number,
         required:[true, 'Please Enter score'],
-        maxlength: 60
+        maxlength: 20
     },
     term:
     {
@@ -37,7 +37,7 @@ const examSchema = new Schema ({
 });
 
 //create a model
-const Exam = mongoose.model('exam', examSchema);
+const Firstca = mongoose.model('firstca', firstcaSchema);
 
 //export the model
-module.exports = Exam;
+module.exports = Firstca;

@@ -1,6 +1,6 @@
 //const ErrorResponse = require('../config/util/errorResponse');
-const Exam = require('../models/exam');
-//add exam and update
+const Secondca = require('../models/secondca');
+//addsecondca and update
 exports.create = async (req, res, next) => {
     //check if student with the registration,subject and session number exit in first term exam score tabele
     try{
@@ -9,7 +9,7 @@ exports.create = async (req, res, next) => {
         const  {regnumber, subject, session, term} = req.body;
         const filter = {regnumber, subject, session, term};
         const update = req.body;
-        let doc = await Exam.findOneAndUpdate(filter, update,{
+        let doc = await Secondca.findOneAndUpdate(filter, update,{
             new: true,
             upsert:true
         });
@@ -31,48 +31,48 @@ exports.create = async (req, res, next) => {
 
 };
 /**
- * Get all the exams
- * Paginate the exams
- * Get the total number of exams
+ * Get all the secondcas
+ * Paginate the secondcas
+ * Get the total number of secondcas
  */
 exports.read = async (req, res, next) =>{
     //search for scores by registration, session and term
-    //replicate exam in test
+    
 
     const page = req.query.page;
     const ItemsPerPge = 10;
-    const exams = await Exam.find()
+    const secondcas = await Secondca.find()
         .skip((page - 1) * ItemsPerPge)
         .limit(ItemsPerPge);
-   const totalExams = await Exam.countDocuments();
-    res.json({ exams, totalExams});
+   const totalSecondcas = await Secondca.countDocuments();
+    res.json({ secondcas, totalSecondcas});
     
 
 };
 /**
- * reaad exam for inividual
+ * reaad firstca for inividual
  **/
 exports.readone = async (req, res, next)=>{
-    //search for exams base on regnuumber, session and term
+    //search for firstca base on regnuumber, session and term
     const  {regnumber, session, term} = req.body;
     const filter = {regnumber, session, term};
-    exams = await Exam.find(filter);
-    console.log(exams);
-    res.json({exams});
+    secondcas = await Secondca.find(filter);
+    console.log(secondcas);
+    res.json({secondcas});
 }
 /**
- * delete the exam
+ * delete the firstca
  */
-exports.deleteExams =async (req, res, next) => {
+exports.deleteSecondcas =async (req, res, next) => {
     console.log(req.params);
     try{
         
-        const exams = await Exam.findOneAndDelete({ _id: req.params.examId });
+        const secondcas = await Secondca.findOneAndDelete({ _id: req.params.secondcaId });
        
-        if (exams) {
-            res.json({ exams });
+        if (secondcas) {
+            res.json({ secondcas });
         } else {
-            res.json({ message: `the exam with the id of ${req.params.examId} does not exits` });
+            res.json({ message: `the Secondca with the id of ${req.params.secondcaId} does not exits` });
         }
     }
     catch(err)
